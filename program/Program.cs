@@ -1,66 +1,137 @@
 ﻿using System;
 
-namespace DateRange
+namespace program
 {
     public class Program
     {
         const int FirstDayIndex = 0;
         const int FirstMonthIndex = 3;
+        const int InsertSubstringDayIndex = 5;
+        const int FirstRemoveIndex = 2;
+        const int SecondRemoveIndex = 5;
         const string FormatString = "d";
+        const string ExceptionMessage = "Invalid input format.Input shall be provided: dd.mm.yyyy dd.mm.yyyy. " +
+                    "First input shall indicate earlier date than the second one. Example: 21.03.2019 31.05.2019";
 
         public static void Main(string[] args)
         {
-            var startDateAsString = args[0];
-            var endDateAsString = args[1];  
+            //var startDateAsString = args[0];
+            //var endDateAsString = args[1];
+            var startDateAsString = "29.02.2019";
+            var endDateAsString = "21.03.2019";
 
             try
             {
-                if (!isNotText(startDateAsString) || !isNotText(endDateAsString)) throw new FormatException();
+                printRange(startDateAsString, endDateAsString);
+                //if (!isNotText(startDateAsString) || !isNotText(endDateAsString)) throw new FormatException();
 
-                startDateAsString = convertStringToValidForm(startDateAsString);
-                endDateAsString = convertStringToValidForm(endDateAsString);
+                //startDateAsString = convertStringToValidForm(startDateAsString);
+                ////Console.WriteLine(startDateAsString);
+                //endDateAsString = convertStringToValidForm(endDateAsString);
+                ////Console.WriteLine(endDateAsString);
 
-                var startDate = DateTime.ParseExact(startDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
-                var endDate = DateTime.ParseExact(endDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
+                //var startDate = DateTime.ParseExact(startDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
+                //var endDate = DateTime.ParseExact(endDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
 
-                var datesComparisonResult = DateTime.Compare(endDate, startDate);
-                if (datesComparisonResult != 1) throw new FormatException();
+                ////Console.WriteLine(startDate);
+                ////Console.WriteLine(endDate);
 
-                if ((startDate.Year == endDate.Year) && (startDate.Month == endDate.Month))
-                {
-                    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
-                    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
-                    var monthAsString = AddZeroIfNeeded(startDate.Month);
+                //var datesComparisonResult = DateTime.Compare(endDate, startDate);
+                ////Console.WriteLine(datesComparisonResult);
+               
+                //if (datesComparisonResult != 1) throw new FormatException();
 
-                    Console.WriteLine($"{firstDayAsString}-{secondDayAsString}.{monthAsString}.{startDate.Year}");
-                }
+                //if ((startDate.Year == endDate.Year) && (startDate.Month == endDate.Month))
+                //{
+                //    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                //    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                //    var monthAsString = AddZeroIfNeeded(startDate.Month);
 
-                if ((startDate.Year == endDate.Year) && (startDate.Month != endDate.Month))
-                {
-                    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
-                    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
-                    var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
-                    var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
+                //    Console.WriteLine($"{firstDayAsString}-{secondDayAsString}.{monthAsString}.{startDate.Year}");
+                //}
 
-                    Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}-{secondDayAsString}.{secondMonthAsString}.{startDate.Year}");
-                }
+                //if ((startDate.Year == endDate.Year) && (startDate.Month != endDate.Month))
+                //{
+                //    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                //    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                //    var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
+                //    var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
 
-                if (startDate.Year != endDate.Year)
-                {
-                    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
-                    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
-                    var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
-                    var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
+                //    Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}-{secondDayAsString}.{secondMonthAsString}.{startDate.Year}");
+                //}
 
+                //if (startDate.Year != endDate.Year)
+                //{
+                //    var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                //    var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                //    var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
+                //    var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
+                //    var firstYear = startDate.Year.ToString();
+                //    var secondYear = endDate.Year.ToString();
 
-                    Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}.{startDate.Year}" +
-                        $"-{secondDayAsString}.{secondMonthAsString}.{endDate.Year}");
-                }
+                //    Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}.{firstYear}" +
+                //        $"-{secondDayAsString}.{secondMonthAsString}.{endDate.Year}");
+                //}
+                
             }
             catch (FormatException)
             {
-                Console.WriteLine("Invalid input format. Input shall be provided: dd.mm.yyyy dd.mm.yyyy. " +
-                    "First input shall indicate earlier date than the second one. Example: 21.03.2019 31.05.2019");         
+                //Console.WriteLine("Invalid input format. Input shall be provided: dd.mm.yyyy dd.mm.yyyy. " +
+                //    "First input shall indicate earlier date than the second one. Example: 21.03.2019 31.05.2019");
+                Console.WriteLine(ExceptionMessage);
+            }
+        }
+
+        public static void printRange(string startDateAsString, string endDateAsString)
+        {
+            if (!isNotText(startDateAsString) || !isNotText(endDateAsString)) throw new FormatException();
+
+            startDateAsString = convertStringToValidForm(startDateAsString);
+            //Console.WriteLine(startDateAsString);
+            endDateAsString = convertStringToValidForm(endDateAsString);
+            //Console.WriteLine(endDateAsString);
+
+            var startDate = DateTime.ParseExact(startDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
+            var endDate = DateTime.ParseExact(endDateAsString, FormatString, System.Globalization.CultureInfo.InvariantCulture);
+
+            //Console.WriteLine(startDate);
+            //Console.WriteLine(endDate);
+
+            var datesComparisonResult = DateTime.Compare(endDate, startDate);
+            //Console.WriteLine(datesComparisonResult);
+
+            if (datesComparisonResult != 1) throw new FormatException();
+
+            if ((startDate.Year == endDate.Year) && (startDate.Month == endDate.Month))
+            {
+                var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                var monthAsString = AddZeroIfNeeded(startDate.Month);
+
+                Console.WriteLine($"{firstDayAsString}-{secondDayAsString}.{monthAsString}.{startDate.Year}");
+            }
+
+            if ((startDate.Year == endDate.Year) && (startDate.Month != endDate.Month))
+            {
+                var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
+                var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
+
+                Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}-{secondDayAsString}.{secondMonthAsString}.{startDate.Year}");
+            }
+
+            if (startDate.Year != endDate.Year)
+            {
+                var firstDayAsString = AddZeroIfNeeded(startDate.Day);
+                var secondDayAsString = AddZeroIfNeeded(endDate.Day);
+                var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
+                var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
+                var firstYear = startDate.Year.ToString();
+                var secondYear = endDate.Year.ToString();
+
+                Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}.{firstYear}" +
+                    $"-{secondDayAsString}.{secondMonthAsString}.{endDate.Year}");
             }
         }
 
@@ -70,20 +141,22 @@ namespace DateRange
             if (stringAsDate.Length != 10) return false;
             for (int i = 0; i < stringAsDate.Length; i++)
             {
-                if (stringAsDate[i] >= '0' && stringAsDate[i] <= '9' || stringAsDate[i] == '.') resolution &= true;
+                if ((stringAsDate[i] >= '0' && stringAsDate[i] <= '9') || stringAsDate[i] == '.') resolution &= true;
                 else resolution = false;
             }
             return resolution;
         }
 
-        private static string convertStringToValidForm(string dateAsString)
+        public static string convertStringToValidForm(string dateAsString)
         {
             var substringDay = dateAsString.Substring(FirstDayIndex, 2);
             var substringMonth = dateAsString.Substring(FirstMonthIndex, 2);
-            var convertedDate = dateAsString.Replace(substringDay, substringMonth);
+            var convertedDate = dateAsString.Insert(FirstDayIndex, substringMonth);
 
-            convertedDate = convertedDate.Remove(FirstMonthIndex, 2);
-            convertedDate = convertedDate.Insert(FirstMonthIndex, substringDay);
+            convertedDate = convertedDate.Insert(InsertSubstringDayIndex, substringDay);
+            convertedDate = convertedDate.Remove(FirstRemoveIndex, 2);
+            convertedDate = convertedDate.Remove(SecondRemoveIndex, 2);
+
             convertedDate = convertedDate.Replace('.', '/');
 
             return convertedDate;
