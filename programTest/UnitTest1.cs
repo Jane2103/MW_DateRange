@@ -8,16 +8,7 @@ namespace programTest
     public class UnitTest1
     {
         private const string ExceptionMessage = "Invalid input format. Input shall be provided: dd.mm.yyyy dd.mm.yyyy. " +
-                    "First input shall indicate earlier date than the second one. Example: 21.03.2019 31.05.2019";
-    
-        //[TestMethod]
-        //public void convertStringToValidForm_Test()
-        //{
-        //    var input = "02.03.2017";
-        //    var expected = "03/02/2017";
-        //    var result = program.Program.convertStringToValidForm(input);
-        //    Assert.AreEqual(expected, result);
-        //}
+                    "First input shall indicate earlier date than the second one. Example: 21.03.2019 31.05.2019";   
 
         [TestMethod]
         public void printRange_Test1()
