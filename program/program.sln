@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program", "program.csproj", "{1F048844-5D1D-49E2-AF39-A50240AEF092}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateRange", "DateRange.csproj", "{1F048844-5D1D-49E2-AF39-A50240AEF092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "programTest", "..\programTest\programTest.csproj", "{3E8AB127-31D8-40FF-930C-8A5197E3FC67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateRange.UnitTests", "..\programTest\DateRange.UnitTests.csproj", "{3E8AB127-31D8-40FF-930C-8A5197E3FC67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
