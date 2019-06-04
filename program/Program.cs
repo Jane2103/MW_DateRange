@@ -36,10 +36,10 @@ namespace DateRange
             var firstMonthAsString = AddZeroIfNeeded(startDate.Month);
             var secondMonthAsString = AddZeroIfNeeded(endDate.Month);
 
-            if ((startDate.Year == endDate.Year) && (startDate.Month == endDate.Month))
+            if (startDate.Year == endDate.Year && startDate.Month == endDate.Month)
                 Console.WriteLine($"{firstDayAsString}-{secondDayAsString}.{firstMonthAsString}.{startDate.Year}");                       
 
-            if ((startDate.Year == endDate.Year) && (startDate.Month != endDate.Month))
+            if (startDate.Year == endDate.Year && startDate.Month != endDate.Month)
                 Console.WriteLine($"{firstDayAsString}.{firstMonthAsString}-{secondDayAsString}.{secondMonthAsString}.{startDate.Year}");            
 
             if (startDate.Year != endDate.Year)                         
